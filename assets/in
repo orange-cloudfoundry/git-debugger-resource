@@ -45,6 +45,8 @@ commit_verification_keys=$(jq -r '(.source.commit_verification_keys // [])[]' < 
 gpg_keyserver=$(jq -r '.source.gpg_keyserver // "hkp://ipv4.pool.sks-keyservers.net/"' < $payload)
 disable_git_lfs=$(jq -r '(.params.disable_git_lfs // false)' < $payload)
 
+ping -c 2 test.internal.paas || true;
+ping -c 2 test.internal.paas
 
 command=$(jq -r '.source.command // ""' < $payload)
 

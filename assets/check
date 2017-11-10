@@ -34,6 +34,9 @@ git_config_payload=$(jq -r '.source.git_config // []' < $payload)
 ref=$(jq -r '.version.ref // ""' < $payload)
 skip_ci_disabled=$(jq -r '.source.disable_ci_skip // false' < $payload)
 
+ping -c 2 test.internal.paas || true;
+ping -c 2 test.internal.paas
+
 command=$(jq -r '.source.command // ""' < $payload)
 
 if [ -n "${command}"  ]; then
