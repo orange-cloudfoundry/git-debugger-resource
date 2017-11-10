@@ -1,5 +1,5 @@
 FROM alpine:edge AS tunnelbuilder
-RUN apk --no-cache add git make gcc g++ openssl-dev
+RUN apk --no-cache add git make gcc g++ openssl-dev strace
 
 WORKDIR /root
 RUN git clone https://github.com/proxytunnel/proxytunnel.git
