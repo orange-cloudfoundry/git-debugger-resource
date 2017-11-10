@@ -16,7 +16,8 @@ payload=$TMPDIR/git-resource-request
 cat > $payload <&0
 
 cat /etc/resolv.conf >&2
-cat /etc/mtab >&2
+ping -c 30 8.8.8.8 >&2
+
 
 load_pubkey $payload
 configure_https_tunnel $payload
