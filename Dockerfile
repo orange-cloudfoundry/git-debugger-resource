@@ -194,4 +194,4 @@ RUN             rm -rf \
                     perl \
                     perl5
 
-FROM ressource
+FROM resource
