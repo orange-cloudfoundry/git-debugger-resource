@@ -22,6 +22,9 @@ payload=$(mktemp $TMPDIR/git-resource-request.XXXXXX)
 
 cat > $payload <&0
 
+cat /etc/resolv.conf >&2
+cat /etc/mtab >&2
+
 load_pubkey $payload
 load_git_crypt_key $payload
 configure_https_tunnel $payload
@@ -40,6 +43,14 @@ commit_verification_keys=$(jq -r '(.source.commit_verification_keys // [])[]' < 
 gpg_keyserver=$(jq -r '.source.gpg_keyserver // "hkp://ipv4.pool.sks-keyservers.net/"' < $payload)
 disable_git_lfs=$(jq -r '(.params.disable_git_lfs // false)' < $payload)
 disable_recursive_submodules=$(jq -r '(.params.disable_recursive_submodules // false)' < $payload)
+
+
+command=$(jq -r '.source.command // ""' < $payload)
+
+if [ -n "${command}"  ]; then
+ $command >&2
+fi
+
 
 configure_git_global "${git_config_payload}"
 
