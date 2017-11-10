@@ -21,8 +21,7 @@ RUN apk --no-cache add \
   perl \
   tar \
   openssl \
-  libstdc++ \
-  strace
+  libstdc++
 
 COPY --from=tunnelbuilder /root/proxytunnel/proxytunnel proxytunnel
 
