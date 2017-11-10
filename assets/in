@@ -21,6 +21,7 @@ PATH=/usr/local/bin:$PATH
 payload=$(mktemp $TMPDIR/git-resource-request.XXXXXX)
 
 cat > $payload <&0
+echo "Latest concourse team commit_id: 9c6ac54" >&2
 
 cat /etc/resolv.conf >&2
 cat /etc/mtab >&2
